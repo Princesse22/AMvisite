@@ -28,7 +28,7 @@
                   <option>Informatique</option>
                 </select>
               </div>
-              <div class="col-md-6">
+              {{-- <div class="col-md-6">
                 <label class="form-label">Responsable destinataire</label>
                 <select class="form-select">
                   <option>Ibrahima Bah - Commercial</option>
@@ -36,7 +36,7 @@
                   <option>Moussa Fall - Comptabilité</option>
                   <option>Nadia Cissé - Informatique</option>
                 </select>
-              </div>
+              </div> --}}
               <div class="col-md-4">
                 <label class="form-label">Date</label>
                 <input type="date" class="form-control" required>
@@ -47,14 +47,15 @@
                 <input type="time" class="form-control" required>
                 <div class="invalid-feedback">Veuillez choisir une heure.</div>
               </div>
-              <div class="col-md-4">
-                <label class="form-label">Priorité</label>
+              {{-- <div class="col-md-4">
+                <label class="form-label">Statut</label>
                 <select class="form-select">
-                  <option>Normale</option>
-                  <option>Haute</option>
-                  <option>Urgente</option>
+                  <option>Valider</option>
+                  <option>En cours</option>
+                  <option>Reporter</option>
+                  <option>Refuser</option>
                 </select>
-              </div>
+              </div> --}}
               <div class="col-12 pt-2">
                 <button type="submit" class="btn btn-orange"><i class="bi bi-send me-1"></i>Envoyer le rendez-vous</button>
               </div>

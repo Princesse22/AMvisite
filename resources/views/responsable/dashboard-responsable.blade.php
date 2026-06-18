@@ -6,9 +6,9 @@
 
         <div class="row g-3 mb-4">
           <div class="col-6 col-md-3"><div class="am-stat"><div><div class="am-stat-label">Rendez-vous reçus</div><div class="am-stat-value">38</div><div class="am-stat-trend text-secondary">Ce mois</div></div><div class="am-stat-icon am-icon-orange"><i class="bi bi-inbox-fill"></i></div></div></div>
-          <div class="col-6 col-md-3"><div class="am-stat"><div><div class="am-stat-label">Validés</div><div class="am-stat-value">21</div><div class="am-stat-trend text-success"><i class="bi bi-check2"></i> 55%</div></div><div class="am-stat-icon am-icon-green"><i class="bi bi-check-circle-fill"></i></div></div></div>
-          <div class="col-6 col-md-3"><div class="am-stat"><div><div class="am-stat-label">Rejetés</div><div class="am-stat-value">7</div><div class="am-stat-trend text-danger"><i class="bi bi-x"></i> 18%</div></div><div class="am-stat-icon am-icon-red"><i class="bi bi-x-circle-fill"></i></div></div></div>
-          <div class="col-6 col-md-3"><div class="am-stat"><div><div class="am-stat-label">Reportés</div><div class="am-stat-value">10</div><div class="am-stat-trend text-warning"><i class="bi bi-clock"></i> 27%</div></div><div class="am-stat-icon am-icon-amber"><i class="bi bi-calendar-event-fill"></i></div></div></div>
+          <div class="col-6 col-md-3"><div class="am-stat"><div><div class="am-stat-label">Validés</div><div class="am-stat-value">21</div><div class="am-stat-trend text-success"></div></div><div class="am-stat-icon am-icon-green"><i class="bi bi-check-circle-fill"></i></div></div></div>
+          <div class="col-6 col-md-3"><div class="am-stat"><div><div class="am-stat-label">Rejetés</div><div class="am-stat-value">7</div><div class="am-stat-trend text-danger"></i></div></div><div class="am-stat-icon am-icon-red"><i class="bi bi-x-circle-fill"></i></div></div></div>
+          <div class="col-6 col-md-3"><div class="am-stat"><div><div class="am-stat-label">Reportés</div><div class="am-stat-value">10</div><div class="am-stat-trend text-warning"></div></div><div class="am-stat-icon am-icon-amber"><i class="bi bi-calendar-event-fill"></i></div></div></div>
         </div>
 
         <div class="row g-3 mb-4">
@@ -26,19 +26,41 @@
           </div>
         </div>
 
-        <div class="am-table-card">
-          <div class="am-table-header"><h5>Derniers rendez-vous reçus</h5><a href="rendezvous-recus.html" class="btn btn-sm btn-outline-orange">Tout voir</a></div>
-          <div class="table-responsive">
-            <table class="table am-table align-middle">
-              <thead><tr><th>Visiteur</th><th>Objet</th><th>Date</th><th>Heure</th><th>Statut</th></tr></thead>
-              <tbody>
-                <tr><td><div class="am-cell-user"><div class="am-cell-avatar">MK</div><div class="am-cell-name">Mariama Koné</div></div></td><td>Partenariat commercial</td><td>18 Juin 2026</td><td>10:00</td><td><span class="am-badge am-badge-info">En cours</span></td></tr>
-                <tr><td><div class="am-cell-user"><div class="am-cell-avatar">PG</div><div class="am-cell-name">Paul Gomez</div></div></td><td>Présentation produit</td><td>18 Juin 2026</td><td>14:30</td><td><span class="am-badge am-badge-success">Validé</span></td></tr>
-                <tr><td><div class="am-cell-user"><div class="am-cell-avatar">LD</div><div class="am-cell-name">Linda Diop</div></div></td><td>Entretien recrutement</td><td>19 Juin 2026</td><td>09:15</td><td><span class="am-badge am-badge-warning">Reporté</span></td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+<div class="table-responsive">
+    <table class="table am-table table-bordered align-middle">
+        <thead>
+            <tr>
+                <th>Visiteur</th>
+                <th>Objet</th>
+                <th>Date</th>
+                <th>Heure</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>
+                    <div class="am-cell-user">
+                        <div class="am-cell-avatar">MK</div>
+                        <div class="am-cell-name">Mariama Koné</div>
+                    </div>
+                </td>
+                <td>Partenariat commercial</td>
+                <td>18 Juin 2026</td>
+                <td>10:00</td>
+                <td>
+                    <button class="btn btn-info btn-sm">En cours</button>
+                    <button class="btn btn-success btn-sm">Valider</button>
+                    <a href="rendezvous-detail.html" class="btn btn-warning btn-sm">
+                        Reporter
+                    </a>
+                    <button class="btn btn-danger btn-sm">Rejeter</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 @endsection
 
 @section('vendor-scripts')

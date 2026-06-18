@@ -5,10 +5,10 @@
 @section('content')
 
         <div class="am-table-card">
-          <div class="am-table-header">
+          {{-- <div class="am-table-header">
             <h5>Visiteurs enregistrés</h5>
             <a href="enregistrer-visiteur.html" class="btn btn-sm btn-orange"><i class="bi bi-plus-lg me-1"></i>Nouveau visiteur</a>
-          </div>
+          </div> --}}
           <div class="table-responsive">
             <table class="table am-table align-middle">
               <thead>
