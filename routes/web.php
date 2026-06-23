@@ -1,70 +1,116 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-
+// Page d'accueil = formulaire de connexion
 Route::get('/', function () {
     return view('auth.login');
-})->name('login');
-
-Route::get('/index.html', function () {
-    return view('auth.login');
-});
-
-// --- Super Administrateur ---
-Route::get('/dashboard-superadmin.html', function () {
-    return view('superadmin.dashboard-superadmin');
-});
-Route::get('/gestion-admins.html', function () {
-    return view('superadmin.gestion-admins');
-});
-Route::get('/gestion-responsables.html', function () {
-    return view('superadmin.gestion-responsables');
-});
-Route::get('/gestion-secretaires.html', function () {
-    return view('superadmin.gestion-secretaires');
-});
-
-// --- Administrateur ---
-Route::get('/dashboard-admin.html', function () {
-    return view('admin.dashboard-admin');
-});
-
-// --- Secrétaire ---
-Route::get('/dashboard-secretaire.html', function () {
-    return view('secretaire.dashboard-secretaire');
-});
-Route::get('/enregistrer-visiteur.html', function () {
-    return view('secretaire.enregistrer-visiteur');
-});
-Route::get('/liste-visiteurs.html', function () {
-    return view('secretaire.liste-visiteurs');
-});
-Route::get('/planifier-rendezvous.html', function () {
-    return view('secretaire.planifier-rendezvous');
-});
-
-// --- Responsable ---
-Route::get('/dashboard-responsable.html', function () {
-    return view('responsable.dashboard-responsable');
-});
-Route::get('/rendezvous-recus.html', function () {
-    return view('responsable.rendezvous-recus');
-});
-Route::get('/rendezvous-detail.html', function () {
-    return view('responsable.rendezvous-detail');
 });
 
 
-Route::get('/profil.html', function () {
-    return view('partages.profil');
+Route::middleware(['auth', 'role:super_admin'])->group(function () {
+    Route::get('/dashboard-superadmin.html', function () {
+        return view('superadmin.dashboard-superadmin');
+    })->name('superadmin');
+
+    Route::get('/gestion-admins.html', function () {
+        return view('superadmin.gestion-admins');
+    })->name('gestionadmins');
+
+        Route::get('/parametres.html', function () {
+        return view('superadmin.parametres');
+    })->name('parametres');
+
+    Route::get('/profil.html', function () {
+        return view('superadmin.profil');
+    })->name('profil');
+
+    Route::get('/notifications.html', function () {
+        return view('superadmin.notifications');
+    })->name('notifications');
 });
-Route::get('/notifications.html', function () {
-    return view('partages.notifications');
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/dashboard-admin.html', function () {
+        return view('admin.dashboard-admin');
+    })->name('admin');
+
+    Route::get('/gestion-utilisateurs.html', function () {
+        return view('admin.gestion-utilisateurs');
+    })->name('gestion-utilisateurs');
+
+    Route::get('/liste-visiteurs.html', function () {
+        return view('admin.liste-visiteurs');
+    })->name('liste-visiteurs');
+
+    route::get('/historique-rendezvous.html',function(){
+        return view('admin.historique-rendezvous');
+    })->name('historique-rendezvous');
+
+    Route::get('/parametres.html', function () {
+        return view('admin.parametres');
+    })->name('parametres');
+
+    Route::get('/profil.html', function () {
+        return view('admin.profil');
+    })->name('profil');
+
+    Route::get('/notifications.html', function () {
+        return view('admin.notifications');
+    })->name('notifications');
+
 });
-Route::get('/parametres.html', function () {
-    return view('partages.parametres');
+
+Route::middleware(['auth', 'role:secretaire'])->group(function () {
+    Route::get('/dashboard-secretaire.html', function () {
+        return view('secretaire.dashboard-secretaire');
+    })->name('secretaires');
+
+    Route::get('/enregistrer-visiteur.html', function () {
+        return view('secretaire.enregistrer-visiteur');
+    })->name('enregistrer-visiteur');
+
+    Route::get('/liste-visiteurs.html', function () {
+        return view('secretaire.liste-visiteurs');
+    })->name('liste-visiteurs');
+
+    Route::get('/rendezvous-detail.html', function () {
+        return view('secretaire.rendezvous-detail');
+    })->name('rendezvous-detail');
+
+    Route::get('/planifier-rendezvous.html', function () {
+        return view('secretaire.planifier-rendezvous');
+    })->name('planifier-rendezvous');
+
+    Route::get('/historique-rendezvous.html', function () {
+        return view('secretaire.historique-rendezvous');
+    })->name('historique-rendezvous');
+
+    Route::get('/parametres.html', function () {
+        return view('secretaire.parametres');
+    })->name('parametres');
+
+    Route::get('/profil.html', function () {
+        return view('secretaire.profil');
+    })->name('profil');
+
+    Route::get('/notifications.html', function () {
+        return view('secretaire.notifications');
+    })->name('notifications');
+
 });
-Route::get('/historique-rendezvous.html', function () {
-    return view('partages.historique-rendezvous');
+
+Route::middleware(['auth', 'role:responsable'])->group(function () {
+    Route::get('/dashboard-responsable.html', function () {
+        return view('responsable.dashboard-responsable');
+    })->name('responsable');
 });
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';

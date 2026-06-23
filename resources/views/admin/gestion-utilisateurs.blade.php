@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Gestion des Responsables | Accent Media')
+@section('title', 'Gestion des Utilisateurs | Accent Media')
 
 @section('content')
 
@@ -67,6 +67,6 @@
 
 @section('scripts')
   <script>
-    buildLayout({ role: 'superadmin', active: 'gestion-responsables.html', title: 'Gestion des Responsables', subtitle: 'Responsables de service destinataires des rendez-vous' });
+    buildLayout({ role: 'admin', active: '/admin/gestion-utilisateurs.html', title: 'Gestion des Utilisateurs', subtitle: 'Responsables de service destinataires des rendez-vous' });
   </script>
 @endsection

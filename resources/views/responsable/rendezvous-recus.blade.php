@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
 @section('title', 'Rendez-vous reçus | Accent Media')
 
@@ -22,7 +22,7 @@
                   <td>Partenariat commercial</td><td>18 Juin 2026</td><td>10:00</td><td><span class="am-badge am-badge-muted">Nouveau</span></td>
                   <td class="text-end">
                     <div class="d-inline-flex gap-1">
-                      <a href="rendezvous-detail.html" class="am-action-btn view" title="Voir détails"><i class="bi bi-eye"></i></a>
+                      <a href="/responsable/rendezvous-detail.html" class="am-action-btn view" title="Voir détails"><i class="bi bi-eye"></i></a>
                       <button class="am-action-btn" title="Valider" data-demo-action="Rendez-vous validé." style="color:var(--am-success)"><i class="bi bi-check-lg"></i></button>
                       <button class="am-action-btn" title="Rejeter" data-demo-action="Rendez-vous rejeté." style="color:var(--am-danger)"><i class="bi bi-x-lg"></i></button>
                       <button class="am-action-btn" title="Reporter" data-bs-toggle="modal" data-bs-target="#reportModal" style="color:var(--am-warning)"><i class="bi bi-calendar-event"></i></button>
@@ -35,7 +35,7 @@
                   <td>Présentation produit</td><td>18 Juin 2026</td><td>14:30</td><td><span class="am-badge am-badge-success">Validé</span></td>
                   <td class="text-end">
                     <div class="d-inline-flex gap-1">
-                      <a href="rendezvous-detail.html" class="am-action-btn view"><i class="bi bi-eye"></i></a>
+                      <a href="/responsable/rendezvous-detail.html" class="am-action-btn view"><i class="bi bi-eye"></i></a>
                       <button class="am-action-btn" data-demo-action="Rendez-vous rejeté." style="color:var(--am-danger)"><i class="bi bi-x-lg"></i></button>
                       <button class="am-action-btn" data-bs-toggle="modal" data-bs-target="#reportModal" style="color:var(--am-warning)"><i class="bi bi-calendar-event"></i></button>
                     </div>
@@ -46,7 +46,7 @@
                   <td>Entretien recrutement</td><td>19 Juin 2026</td><td>09:15</td><td><span class="am-badge am-badge-warning">Reporté</span></td>
                   <td class="text-end">
                     <div class="d-inline-flex gap-1">
-                      <a href="rendezvous-detail.html" class="am-action-btn view"><i class="bi bi-eye"></i></a>
+                      <a href="/responsable/rendezvous-detail.html" class="am-action-btn view"><i class="bi bi-eye"></i></a>
                       <button class="am-action-btn" data-demo-action="Rendez-vous validé." style="color:var(--am-success)"><i class="bi bi-check-lg"></i></button>
                       <button class="am-action-btn" data-demo-action="Rendez-vous mis en cours." style="color:var(--am-info)"><i class="bi bi-hourglass-split"></i></button>
                     </div>
@@ -57,7 +57,7 @@
                   <td>Renouvellement contrat</td><td>20 Juin 2026</td><td>11:45</td><td><span class="am-badge am-badge-info">En cours</span></td>
                   <td class="text-end">
                     <div class="d-inline-flex gap-1">
-                      <a href="rendezvous-detail.html" class="am-action-btn view"><i class="bi bi-eye"></i></a>
+                      <a href="/responsable/rendezvous-detail.html" class="am-action-btn view"><i class="bi bi-eye"></i></a>
                       <button class="am-action-btn" data-demo-action="Rendez-vous validé." style="color:var(--am-success)"><i class="bi bi-check-lg"></i></button>
                       <button class="am-action-btn" data-demo-action="Rendez-vous rejeté." style="color:var(--am-danger)"><i class="bi bi-x-lg"></i></button>
                       <button class="am-action-btn" data-bs-toggle="modal" data-bs-target="#reportModal" style="color:var(--am-warning)"><i class="bi bi-calendar-event"></i></button>
@@ -97,6 +97,6 @@
 
 @section('scripts')
   <script>
-    buildLayout({ role: 'responsable', active: 'rendezvous-recus.html', title: 'Rendez-vous reçus', subtitle: 'Gérer les demandes de rendez-vous' });
+    buildLayout({ role: 'responsable', active: '/responsable/rendezvous-recus.html', title: 'Rendez-vous reçus', subtitle: 'Gérer les demandes de rendez-vous' });
   </script>
 @endsection

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
 @section('title', 'Tableau de bord - Secrétaire | Accent Media')
 
@@ -14,10 +14,10 @@
             <div class="am-card am-card-body h-100">
               <h5 class="fw-bold mb-3">Actions rapides</h5>
               <div class="row g-3">
-                <div class="col-6"><a href="enregistrer-visiteur.html" class="am-card am-card-body d-block text-center text-decoration-none h-100"><div class="am-stat-icon am-icon-orange mx-auto mb-2"><i class="bi bi-person-plus-fill"></i></div><div class="fw-semibold text-dark">Enregistrer un visiteur</div></a></div>
-                <div class="col-6"><a href="planifier-rendezvous.html" class="am-card am-card-body d-block text-center text-decoration-none h-100"><div class="am-stat-icon am-icon-blue mx-auto mb-2"><i class="bi bi-calendar-plus-fill"></i></div><div class="fw-semibold text-dark">Planifier un rendez-vous</div></a></div>
-                <div class="col-6"><a href="liste-visiteurs.html" class="am-card am-card-body d-block text-center text-decoration-none h-100"><div class="am-stat-icon am-icon-green mx-auto mb-2"><i class="bi bi-people-fill"></i></div><div class="fw-semibold text-dark">Liste des visiteurs</div></a></div>
-                <div class="col-6"><a href="historique-rendezvous.html" class="am-card am-card-body d-block text-center text-decoration-none h-100"><div class="am-stat-icon am-icon-amber mx-auto mb-2"><i class="bi bi-clock-history"></i></div><div class="fw-semibold text-dark">Historique</div></a></div>
+                <div class="col-6"><a href="/secretaire/enregistrer-visiteur.html" class="am-card am-card-body d-block text-center text-decoration-none h-100"><div class="am-stat-icon am-icon-orange mx-auto mb-2"><i class="bi bi-person-plus-fill"></i></div><div class="fw-semibold text-dark">Enregistrer un visiteur</div></a></div>
+                <div class="col-6"><a href="/secretaire/planifier-rendezvous.html" class="am-card am-card-body d-block text-center text-decoration-none h-100"><div class="am-stat-icon am-icon-blue mx-auto mb-2"><i class="bi bi-calendar-plus-fill"></i></div><div class="fw-semibold text-dark">Planifier un rendez-vous</div></a></div>
+                <div class="col-6"><a href="/secretaire/liste-visiteurs.html" class="am-card am-card-body d-block text-center text-decoration-none h-100"><div class="am-stat-icon am-icon-green mx-auto mb-2"><i class="bi bi-people-fill"></i></div><div class="fw-semibold text-dark">Liste des visiteurs</div></a></div>
+                <div class="col-6"><a href="/secretaire/historique-rendezvous.html" class="am-card am-card-body d-block text-center text-decoration-none h-100"><div class="am-stat-icon am-icon-amber mx-auto mb-2"><i class="bi bi-clock-history"></i></div><div class="fw-semibold text-dark">Historique</div></a></div>
               </div>
             </div>
           </div>
@@ -37,7 +37,7 @@
         </div>
 
         <div class="am-table-card">
-          <div class="am-table-header"><h5>Visiteurs récents</h5><a href="liste-visiteurs.html" class="btn btn-sm btn-outline-orange">Tout voir</a></div>
+          <div class="am-table-header"><h5>Visiteurs récents</h5><a href="/secretaire/liste-visiteurs.html" class="btn btn-sm btn-outline-orange">Tout voir</a></div>
           <div class="table-responsive">
             <table class="table am-table align-middle">
               <thead><tr><th>Nom</th><th>Téléphone</th><th>Type de visite</th><th>Heure</th></tr></thead>
@@ -53,6 +53,6 @@
 
 @section('scripts')
   <script>
-    buildLayout({ role: 'secretaire', active: 'dashboard-secretaire.html', title: 'Tableau de bord', subtitle: 'Espace secrétaire — accueil et planification' });
+    buildLayout({ role: 'secretaire', active: '/secretaire/dashboard-secretaire.html', title: 'Tableau de bord', subtitle: 'Espace secrétaire — accueil et planification' });
   </script>
 @endsection

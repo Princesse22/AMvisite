@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
 @section('title', 'Détail du rendez-vous | Accent Media')
 
 @section('content')
 
-        <a href="rendezvous-recus.html" class="btn btn-sm btn-outline-secondary mb-3"><i class="bi bi-arrow-left me-1"></i>Retour</a>
+        <a href="/responsable/rendezvous-recus.html" class="btn btn-sm btn-outline-secondary mb-3"><i class="bi bi-arrow-left me-1"></i>Retour</a>
         <div class="row g-3">
           <div class="col-12 col-lg-8">
             <div class="am-section-card mb-3">
@@ -89,6 +89,6 @@
 
 @section('scripts')
   <script>
-    buildLayout({ role: 'responsable', active: 'rendezvous-recus.html', title: 'Détail du rendez-vous', subtitle: 'Mariama Koné' });
+    buildLayout({ role: 'responsable', active: '/responsable/rendezvous-recus.html', title: 'Détail du rendez-vous', subtitle: 'Mariama Koné' });
   </script>
 @endsection

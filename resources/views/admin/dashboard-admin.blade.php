@@ -26,7 +26,7 @@
         </div>
 
         <div class="am-table-card">
-          <div class="am-table-header"><h5>Activité récente</h5><a href="liste-visiteurs.html" class="btn btn-sm btn-outline-orange">Visiteurs</a></div>
+          <div class="am-table-header"><h5>Activité récente</h5></div>
           <div class="table-responsive">
             <table class="table am-table align-middle">
               <thead><tr><th>Visiteur</th><th>Type de visite</th><th>Secrétaire</th><th>Date</th></tr></thead>
@@ -47,7 +47,7 @@
 
 @section('scripts')
   <script>
-    buildLayout({ role: 'admin', active: 'dashboard-admin.html', title: 'Tableau de bord', subtitle: 'Suivi de l\'activité' });
+    buildLayout({ role: 'admin', active: '/admin/dashboard-admin.html', title: 'Tableau de bord', subtitle: 'Suivi de l\'activité' });
     new Chart(document.getElementById('chartVisits'), {
       type: 'line',
       data: { labels: ['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Août','Sep','Oct','Nov','Déc'],

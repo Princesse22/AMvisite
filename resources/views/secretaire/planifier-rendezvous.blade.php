@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
 @section('title', 'Planifier un rendez-vous | Accent Media')
 
@@ -28,7 +28,7 @@
                   <option>Informatique</option>
                 </select>
               </div>
-              {{-- <div class="col-md-6">
+              <div class="col-md-6">
                 <label class="form-label">Responsable destinataire</label>
                 <select class="form-select">
                   <option>Ibrahima Bah - Commercial</option>
@@ -36,7 +36,7 @@
                   <option>Moussa Fall - Comptabilité</option>
                   <option>Nadia Cissé - Informatique</option>
                 </select>
-              </div> --}}
+              </div>
               <div class="col-md-4">
                 <label class="form-label">Date</label>
                 <input type="date" class="form-control" required>
@@ -47,15 +47,14 @@
                 <input type="time" class="form-control" required>
                 <div class="invalid-feedback">Veuillez choisir une heure.</div>
               </div>
-              {{-- <div class="col-md-4">
-                <label class="form-label">Statut</label>
+              <div class="col-md-4">
+                <label class="form-label">Priorité</label>
                 <select class="form-select">
-                  <option>Valider</option>
-                  <option>En cours</option>
-                  <option>Reporter</option>
-                  <option>Refuser</option>
+                  <option>Normale</option>
+                  <option>Haute</option>
+                  <option>Urgente</option>
                 </select>
-              </div> --}}
+              </div>
               <div class="col-12 pt-2">
                 <button type="submit" class="btn btn-orange"><i class="bi bi-send me-1"></i>Envoyer le rendez-vous</button>
               </div>
@@ -66,6 +65,6 @@
 
 @section('scripts')
   <script>
-    buildLayout({ role: 'secretaire', active: 'planifier-rendezvous.html', title: 'Planifier un rendez-vous', subtitle: 'Envoyer une demande au responsable' });
+    buildLayout({ role: 'secretaire', active: '/secretaire/planifier-rendezvous.html', title: 'Planifier un rendez-vous', subtitle: 'Envoyer une demande au responsable' });
   </script>
 @endsection

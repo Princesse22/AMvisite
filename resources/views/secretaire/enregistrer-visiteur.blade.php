@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
 @section('title', 'Enregistrer un visiteur | Accent Media')
 
@@ -62,6 +62,6 @@
 
 @section('scripts')
   <script>
-    buildLayout({ role: 'secretaire', active: 'enregistrer-visiteur.html', title: 'Enregistrer un visiteur', subtitle: 'Nouveau visiteur' });
+    buildLayout({ role: 'secretaire', active: '/secretaire/enregistrer-visiteur.html', title: 'Enregistrer un visiteur', subtitle: 'Nouveau visiteur' });
   </script>
 @endsection
