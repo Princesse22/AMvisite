@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.app')
 
 @section('title', 'Tableau de bord - Super Administrateur | Accent Media')
 
@@ -80,6 +80,7 @@
         <div class="am-table-card">
           <div class="am-table-header">
             <h5>Derniers rendez-vous</h5>
+            <a href="historique-rendezvous.html" class="btn btn-sm btn-outline-orange">Voir tout</a>
           </div>
           <div class="table-responsive">
             <table class="table am-table align-middle">
@@ -104,7 +105,7 @@
 
 @section('scripts')
   <script>
-    buildLayout({ role: 'superadmin', active: '/superadmin/dashboard-superadmin.html', title: 'Tableau de bord', subtitle: 'Vue globale du système' });
+    buildLayout({ role: 'superadmin', active: 'dashboard-superadmin.html', title: 'Tableau de bord', subtitle: 'Vue globale du système' });
 
     new Chart(document.getElementById('chartMonthly'), {
       type: 'bar',

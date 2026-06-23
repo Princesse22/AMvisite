@@ -29,6 +29,58 @@
   @yield('vendor-scripts')
   <script src="{{ asset('assets/js/layout.js') }}"></script>
   <script src="{{ asset('assets/js/main.js') }}"></script>
+
+
+
+  <!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>@yield('title', 'Accent Media')</title>
+
+@vite(['resources/css/app.css'])
+
+@stack('styles')
+```
+
+</head>
+
+<body>
+
+<div class="am-layout">
+
+```
+<aside class="am-sidebar">
+    @include('layouts.partials.sidebar')
+</aside>
+
+<main class="am-main">
+
+    <nav class="am-navbar">
+        @include('layouts.partials.navbar')
+    </nav>
+
+    <section class="am-content">
+        @yield('content')
+    </section>
+
+</main>
+```
+
+</div>
+
+@vite(['resources/js/app.js'])
+
+@stack('scripts')
+
+</body>
+</html>
+
   @yield('scripts')
 </body>
 </html>

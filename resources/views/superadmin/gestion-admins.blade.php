@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.app')
 
 @section('title', 'Gestion des Administrateurs | Accent Media')
 
@@ -71,6 +71,6 @@
 
 @section('scripts')
   <script>
-    buildLayout({ role: 'superadmin', active: '/superadmin/gestion-admins.html', title: 'Gestion des Administrateurs', subtitle: 'Créer et gérer les comptes administrateurs' });
+    buildLayout({ role: 'superadmin', active: 'gestion-admins.html', title: 'Gestion des Administrateurs', subtitle: 'Créer et gérer les comptes administrateurs' });
   </script>
 @endsection
