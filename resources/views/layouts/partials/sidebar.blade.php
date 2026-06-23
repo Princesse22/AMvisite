@@ -1,12 +1,12 @@
 <div class="am-brand">
     <div class="am-brand-logo">AM</div>
 
-```
+
 <div>
     <div class="am-brand-name">Accent Media</div>
     <div class="am-brand-sub">Gestion des visites</div>
 </div>
-```
+
 
 </div>
 
@@ -70,7 +70,7 @@
         </a>
     </li>
 
-```
+
 <li>
     <a href="{{ route('liste-visiteurs') }}">
         <i class="bi bi-people-fill"></i>
@@ -84,7 +84,7 @@
         <span>Gestion rendez-vous</span>
     </a>
 </li>
-```
+
 
 </ul>
 
@@ -113,7 +113,7 @@
         </a>
     </li>
 
-```
+
 <li>
     <a href="{{ route('planifier-rendezvous') }}">
         <i class="bi bi-calendar-plus-fill"></i>
@@ -134,7 +134,7 @@
         <span>Historique</span>
     </a>
 </li>
-```
+
 
 </ul>
 
@@ -168,7 +168,7 @@
 
 <div class="am-sidebar-footer">
 
-```
+
 <form method="POST" action="{{ route('logout') }}">
     @csrf
 
@@ -181,6 +181,6 @@
 
     </button>
 </form>
-```
+
 
 </div>
