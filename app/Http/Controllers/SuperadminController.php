@@ -68,4 +68,12 @@ public function modifierAdmintraitement(Request $request)
     return redirect()->route('gestionadmins')
         ->with('success', 'Administrateur modifié avec succès.');
 }
+
+public function supprimeradmin($id)
+{
+    $admin = Admins::find($id);
+    $admin->delete();
+    return redirect()->route('gestionadmins')
+        ->with('success', 'Administrateur supprimé avec succès.');
+}
 }

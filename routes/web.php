@@ -23,6 +23,7 @@ Route::post('/superadmin/ajout-admin', [SuperadminController::class, 'ajoutAdmin
     Route::get('/modifierAdmin/{id}', [SuperadminController::class, 'modifierAdmin'])->name('modifierAdmin');
     Route::post('/modifierAdmintraitement', [SuperadminController::class, 'modifierAdmintraitement'])->name('modifierAdmintraitement');
     Route::get('/gestion-admins.html', [SuperadminController::class, 'afficheAdmin'])->name('gestionadmins');
+    Route::get('/supprimeradmin/{id}', [SuperadminController::class, 'supprimeradmin'])->name('supprimeradmin');
 
         Route::get('/parametres.html', function () {
         return view('superadmin.parametres');

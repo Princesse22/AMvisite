@@ -32,8 +32,9 @@
                         <a class="am-action-btn edit" href="{{ route('modifierAdmin', $admin->id) }}">
                             <i class="bi bi-pencil"></i>
                         </a>
-                        <a class="am-action-btn delete" data-bs-toggle="modal" data-bs-target="#modalDelete" href="#">
-                            <i class="bi bi-trash"></i>
+                        <a class="am-action-btn delete" data-bs-toggle="modal" data-bs-target="#modalDelete" href="{{ route('supprimeradmin', $admin->id) }}">
+                        <i class="bi bi-trash"></i>
+                        </a>
                         </a>
                     </td>
                 </tr>
@@ -93,7 +94,7 @@
           <p class="text-secondary">Cette action est irréversible. Voulez-vous vraiment supprimer cet administrateur ?</p>
           <div class="d-flex gap-2 justify-content-center mt-3">
             <button class="btn btn-light" data-bs-dismiss="modal">Annuler</button>
-            <button class="btn btn-danger" data-bs-dismiss="modal" data-demo-action="Administrateur supprimé (démonstration).">Supprimer</button>
+            <button class="btn btn-danger" href="{{ route('supprimeradmin', $admin->id) }}>Supprimer</button>
           </div>
         </div>
       </div>
