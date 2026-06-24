@@ -29,9 +29,12 @@
                     <td>{{ $admin->num_cni }}</td>
                     <td>{{ $admin->password }}</td>
                     <td class="text-end">
-                        <button class="am-action-btn delete" data-bs-toggle="modal" data-bs-target="#modalDelete">
+                        <a class="am-action-btn edit" href="{{ route('modifierAdmin', $admin->id) }}">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                        <a class="am-action-btn delete" data-bs-toggle="modal" data-bs-target="#modalDelete" href="#">
                             <i class="bi bi-trash"></i>
-                        </button>
+                        </a>
                     </td>
                 </tr>
                 @endforeach
@@ -44,12 +47,12 @@
 @section('modals')
 
 
-<!-- Modal Ajout/Modification -->
+<!-- Modal Ajout -->
   <div class="modal fade" id="modalAdmin" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header"><h5 class="modal-title fw-bold">Administrateur</h5><button class="btn-close" data-bs-dismiss="modal"></button></div>
-        <form  novalidate method="post" action="{{ route('superadmin.ajout-admin') }}">
+        <form novalidate method="post" action="{{ route('superadmin.ajout-admin') }}">
           @csrf
             <div class="modal-body">
             @if ($errors->any())
@@ -69,10 +72,10 @@
                 <input type="tel" class="form-control" placeholder="+221 77 000 00 00" required name="phone">  </div>
             <div class="mb-3"><label class="form-label">Numero cni</label>
                 <input type="text" class="form-control" placeholder="Ex : Karim Diallo" required name="num_cni"> </div>
-                            <div class="mb-3"><label class="form-label">adresse</label>
+            <div class="mb-3"><label class="form-label">adresse</label>
                 <input type="text" class="form-control" placeholder="Ex : Karim Diallo" required name="adresse"> </div>
-                <div class="mb-3"><label class="form-label">Mot de passe</label>
-                <input type="texte" class="form-control" placeholder="••••••••" required name="password"> </div>
+            <div class="mb-3"><label class="form-label">Mot de passe</label>
+                <input type="password" class="form-control" placeholder="••••••••" required name="password"> </div>
           </div>
           <div class="modal-footer"><button type="button" class="btn btn-light" data-bs-dismiss="modal">Annuler</button><button type="submit" class="btn btn-orange">Enregistrer</button></div>
         </form>

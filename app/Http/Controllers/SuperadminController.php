@@ -41,4 +41,31 @@ class SuperadminController extends Controller
     return view('superadmin.gestion-admins', compact('admins'));
 }
 
+public function modifierAdmin($id)
+{
+    $admin = Admins::find($id);
+    return view('superadmin.modifierAdmin', compact('admin'));
+}
+
+public function modifierAdmintraitement(Request $request)
+{
+    $request->validate([
+        'nom' => 'required|string|max:255',
+        'mail' => 'required|email|unique:admins,mail,' . $request->id,
+        'phone' => 'required|string',
+        'num_cni' => 'required|string',
+        'adresse' => 'required|string',
+    ]);
+
+    $admins = Admins::find($request->id);
+    $admins->nom = $request->nom;
+    $admins->mail = $request->mail;
+    $admins->phone = $request->phone;
+    $admins->num_cni = $request->num_cni;
+    $admins->adresse = $request->adresse;
+    $admins->save();
+
+    return redirect()->route('gestionadmins')
+        ->with('success', 'Administrateur modifié avec succès.');
+}
 }

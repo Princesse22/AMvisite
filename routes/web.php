@@ -19,16 +19,11 @@ Route::middleware(['auth', 'role:super_admin'])->group(function () {
 Route::post('/superadmin/ajout-admin', [SuperadminController::class, 'ajoutAdmin'])
     ->name('superadmin.ajout-admin');
 
-    Route::get('/gestion-admins.html', [SuperadminController::class, 'afficheAdmin'])->name('gestion_admins');
-
-    // ajout admin
-    // Route::get('/dashboard-superadmin.html', [superAdminController::class, 'ajoutAdmin']);
-    // Route::get('/gestion-admins.html', function () {
-    //     return view('superadmin.gestion-admins');
-    // })->name('gestionadmins');
-
+    // Route::get('/gestion-admins.html', [SuperadminController::class, 'afficheAdmin'])->name('gestion_admins');
+    Route::get('/modifierAdmin/{id}', [SuperadminController::class, 'modifierAdmin'])->name('modifierAdmin');
+    Route::post('/modifierAdmintraitement', [SuperadminController::class, 'modifierAdmintraitement'])->name('modifierAdmintraitement');
     Route::get('/gestion-admins.html', [SuperadminController::class, 'afficheAdmin'])->name('gestionadmins');
-    
+
         Route::get('/parametres.html', function () {
         return view('superadmin.parametres');
     })->name('parametres');
