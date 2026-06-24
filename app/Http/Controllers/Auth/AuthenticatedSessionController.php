@@ -29,7 +29,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         $user = Auth::user();
-        // dd($user->role);
+        //  dd($user->role);
         return match ($user->role) {
             'super_admin' => redirect()->route('superadmin'),
             'admin'       => redirect()->route('admin'),

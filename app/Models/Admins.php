@@ -13,18 +13,18 @@ class Admins extends Model
         'phone',
         'adresse',
         'num_cni',
-        'mot_de_passe'
+        'password'
     ];
-        public function User()
-    {
-        return this->belongTo(User::class);
-    }
-        public function Notifications()
-    {
-        return this->belongTo(Notifications::class);
-    }
-        public function SuperAdmin()
-    {
-        return this->belongTo(SuperAdmin::class);
-    }
+public function user()
+{
+    return $this->belongsTo(User::class);
+}
+public function notifications()
+{
+    return $this->belongsTo(Notifications::class);
+}
+public function superAdmin()
+{
+    return $this->belongsTo(SuperAdmin::class);
+}
 }

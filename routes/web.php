@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SuperadminController;
 
 // Page d'accueil = formulaire de connexion
 Route::get('/', function () {
@@ -10,14 +11,24 @@ Route::get('/', function () {
 
 
 Route::middleware(['auth', 'role:super_admin'])->group(function () {
-    Route::get('/dashboard-superadmin.html', function () {
-        return view('superadmin.dashboard-superadmin');
-    })->name('superadmin');
+   Route::get('/dashboard-superadmin.html', function () {
+    return view('superadmin.dashboard-superadmin');
+})->name('superadmin');
 
-    Route::get('/gestion-admins.html', function () {
-        return view('superadmin.gestion-admins');
-    })->name('gestionadmins');
+// ajout admin
+Route::post('/superadmin/ajout-admin', [SuperadminController::class, 'ajoutAdmin'])
+    ->name('superadmin.ajout-admin');
 
+    Route::get('/gestion-admins.html', [SuperadminController::class, 'afficheAdmin'])->name('gestion_admins');
+
+    // ajout admin
+    // Route::get('/dashboard-superadmin.html', [superAdminController::class, 'ajoutAdmin']);
+    // Route::get('/gestion-admins.html', function () {
+    //     return view('superadmin.gestion-admins');
+    // })->name('gestionadmins');
+
+    Route::get('/gestion-admins.html', [SuperadminController::class, 'afficheAdmin'])->name('gestionadmins');
+    
         Route::get('/parametres.html', function () {
         return view('superadmin.parametres');
     })->name('parametres');

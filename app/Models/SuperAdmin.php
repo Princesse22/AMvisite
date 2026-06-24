@@ -17,10 +17,10 @@ class SuperAdmin extends Model
     ];
         public function Admins()
     {
-        return this->hasMany(Admins::class);
+        return $this->hasMany(Admins::class);
     }
          public function Notifications()
     {
-        return this->hasMany(Notifications::class);
+        return $this->hasMany(Notifications::class);
     }
 }

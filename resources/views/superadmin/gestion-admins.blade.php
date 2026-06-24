@@ -19,12 +19,22 @@
           <div class="table-responsive">
             <table class="table am-table align-middle">
               <thead><tr><th>Nom</th><th>Email</th><th>Téléphone</th><th>Statut</th><th class="text-end">Actions</th></tr></thead>
-              <tbody>
-                <tr><td><div class="am-cell-user"><div class="am-cell-avatar">KD</div><div class="am-cell-name">Karim Diallo</div></div></td><td>karim.diallo@accentmedia.com</td><td>+221 77 123 45 67</td><td><span class="am-badge am-badge-success">Actif</span></td><td class="text-end"><button class="am-action-btn edit" data-bs-toggle="modal" data-bs-target="#modalAdmin"><i class="bi bi-pencil"></i></button> <button class="am-action-btn delete" data-bs-toggle="modal" data-bs-target="#modalDelete"><i class="bi bi-trash"></i></button></td></tr>
-                <tr><td><div class="am-cell-user"><div class="am-cell-avatar">SM</div><div class="am-cell-name">Sophie Mensah</div></div></td><td>sophie.mensah@accentmedia.com</td><td>+221 76 998 22 10</td><td><span class="am-badge am-badge-success">Actif</span></td><td class="text-end"><button class="am-action-btn edit" data-bs-toggle="modal" data-bs-target="#modalAdmin"><i class="bi bi-pencil"></i></button> <button class="am-action-btn delete" data-bs-toggle="modal" data-bs-target="#modalDelete"><i class="bi bi-trash"></i></button></td></tr>
-                <tr><td><div class="am-cell-user"><div class="am-cell-avatar">JN</div><div class="am-cell-name">Jean Ndiaye</div></div></td><td>jean.ndiaye@accentmedia.com</td><td>+221 78 445 09 88</td><td><span class="am-badge am-badge-muted">Inactif</span></td><td class="text-end"><button class="am-action-btn edit" data-bs-toggle="modal" data-bs-target="#modalAdmin"><i class="bi bi-pencil"></i></button> <button class="am-action-btn delete" data-bs-toggle="modal" data-bs-target="#modalDelete"><i class="bi bi-trash"></i></button></td></tr>
-                <tr><td><div class="am-cell-user"><div class="am-cell-avatar">RB</div><div class="am-cell-name">Rose Bamba</div></div></td><td>rose.bamba@accentmedia.com</td><td>+221 77 220 14 50</td><td><span class="am-badge am-badge-success">Actif</span></td><td class="text-end"><button class="am-action-btn edit" data-bs-toggle="modal" data-bs-target="#modalAdmin"><i class="bi bi-pencil"></i></button> <button class="am-action-btn delete" data-bs-toggle="modal" data-bs-target="#modalDelete"><i class="bi bi-trash"></i></button></td></tr>
-                <tr><td><div class="am-cell-user"><div class="am-cell-avatar">OD</div><div class="am-cell-name">Omar Dia</div></div></td><td>omar.dia@accentmedia.com</td><td>+221 70 332 78 21</td><td><span class="am-badge am-badge-muted">Inactif</span></td><td class="text-end"><button class="am-action-btn edit" data-bs-toggle="modal" data-bs-target="#modalAdmin"><i class="bi bi-pencil"></i></button> <button class="am-action-btn delete" data-bs-toggle="modal" data-bs-target="#modalDelete"><i class="bi bi-trash"></i></button></td></tr>
+                <tbody>
+                @foreach ($admins as $admin)
+                <tr>
+                    <td><div class="am-cell-name">{{ $admin->nom }}</div></td>
+                    <td>{{ $admin->mail }}</td>
+                    <td>{{ $admin->phone }}</td>
+                    <td>{{ $admin->adresse }}</td>
+                    <td>{{ $admin->num_cni }}</td>
+                    <td>{{ $admin->password }}</td>
+                    <td class="text-end">
+                        <button class="am-action-btn delete" data-bs-toggle="modal" data-bs-target="#modalDelete">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                @endforeach
               </tbody>
             </table>
           </div>
@@ -32,18 +42,37 @@
 @endsection
 
 @section('modals')
+
+
 <!-- Modal Ajout/Modification -->
   <div class="modal fade" id="modalAdmin" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header"><h5 class="modal-title fw-bold">Administrateur</h5><button class="btn-close" data-bs-dismiss="modal"></button></div>
-        <form data-validate data-success="Administrateur enregistré avec succès." novalidate>
-          <div class="modal-body">
-            <div class="mb-3"><label class="form-label">Nom complet</label><input type="text" class="form-control" placeholder="Ex : Karim Diallo" required></div>
-            <div class="mb-3"><label class="form-label">Email</label><input type="email" class="form-control" placeholder="email@accentmedia.com" required></div>
-            <div class="mb-3"><label class="form-label">Téléphone</label><input type="tel" class="form-control" placeholder="+221 77 000 00 00" required></div>
-            <div class="mb-3"><label class="form-label">Mot de passe</label><input type="password" class="form-control" placeholder="••••••••" required></div>
-            <div class="mb-1"><label class="form-label">Statut</label><select class="form-select"><option>Actif</option><option>Inactif</option></select></div>
+        <form  novalidate method="post" action="{{ route('superadmin.ajout-admin') }}">
+          @csrf
+            <div class="modal-body">
+            @if ($errors->any())
+              <div class="alert alert-danger">
+                <ul class="mb-0">
+                  @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                  @endforeach
+                </ul>
+              </div>
+            @endif
+            <div class="mb-3"><label class="form-label">Nom complet</label>
+                <input type="text" class="form-control" placeholder="Ex : Karim Diallo" required name="nom"> </div>
+            <div class="mb-3"><label class="form-label">Email</label>
+                <input type="email" class="form-control" placeholder="email@accentmedia.com" required name="mail"> </div>
+            <div class="mb-3"><label class="form-label">Téléphone</label>
+                <input type="tel" class="form-control" placeholder="+221 77 000 00 00" required name="phone">  </div>
+            <div class="mb-3"><label class="form-label">Numero cni</label>
+                <input type="text" class="form-control" placeholder="Ex : Karim Diallo" required name="num_cni"> </div>
+                            <div class="mb-3"><label class="form-label">adresse</label>
+                <input type="text" class="form-control" placeholder="Ex : Karim Diallo" required name="adresse"> </div>
+                <div class="mb-3"><label class="form-label">Mot de passe</label>
+                <input type="texte" class="form-control" placeholder="••••••••" required name="password"> </div>
           </div>
           <div class="modal-footer"><button type="button" class="btn btn-light" data-bs-dismiss="modal">Annuler</button><button type="submit" class="btn btn-orange">Enregistrer</button></div>
         </form>
@@ -72,5 +101,10 @@
 @section('scripts')
   <script>
     buildLayout({ role: 'superadmin', active: 'gestion-admins.html', title: 'Gestion des Administrateurs', subtitle: 'Créer et gérer les comptes administrateurs' });
+    @if ($errors->any())
+      document.addEventListener('DOMContentLoaded', function () {
+        new bootstrap.Modal(document.getElementById('modalAdmin')).show();
+      });
+    @endif
   </script>
 @endsection
