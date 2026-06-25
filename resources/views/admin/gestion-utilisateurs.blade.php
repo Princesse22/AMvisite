@@ -50,6 +50,59 @@
             </table>
           </div>
         </div>
+<br><br><br><br>
+
+{{-- =============================secretaire --}}
+
+        <div class="am-table-card">
+          <div class="am-table-header">
+            <h5>Liste des secretaires</h5>
+            <a href="{{ route('formAjoutSecretaire') }}" class="btn btn-orange btn-sm">
+              <i class="bi bi-plus-lg me-1"></i>Ajouter un secretaire
+            </a>
+          </div>
+          <div class="table-responsive">
+            <table class="table am-table align-middle">
+              <thead>
+                <tr><th>Nom</th>
+                <th>Email</th>
+                <th>num cni</th>
+                <th>Téléphone</th>
+                <th>adresse</th>
+                <th>Statut</th>
+                <th class="text-end">Actions</th></tr>
+              </thead>
+              <tbody>
+
+                @forelse ($secretaires as $secretaire)
+                <tr>
+                  <td><div class="am-cell-user"><div class="am-cell-avatar">{{ strtoupper(substr($secretaire->nom, 0, 2)) }}</div><div class="am-cell-name">{{ $secretaire->nom }}</div></div></td>
+                  <td>{{ $secretaire->mail }}</td>
+                  <td>{{ $secretaire->num_cni }}</td>
+                  <td>{{ $secretaire->phone }}</td>
+                  <td>{{ $secretaire->adresse }}</td>
+                  <td><span class="am-badge {{ $secretaire->statut === 'actif' ? 'am-badge-success' : 'am-badge-secondary' }}">{{ ucfirst($secretaire->statut) }}</span></td>
+                  <td class="text-end">
+
+                <a href="{{ route('modifierSecretaire', $secretaire->id) }}" class="am-action-btn edit">
+                    <i class="bi bi-pencil"></i>
+                </a>
+
+                <a href="{{ route('supprimerSecretaire', $secretaire->id) }}" class="am-action-btn delete">
+                    <i class="bi bi-trash"></i>
+                </a>
+                  </td>
+                </tr>
+                @empty
+                <tr>
+                  <td colspan="7" class="text-center text-secondary py-4">Aucune secrétaire enregistrée.</td>
+                </tr>
+                @endforelse
+
+              </tbody>
+            </table>
+          </div>
+        </div>
 @endsection
 
 @section('modals')
@@ -128,6 +181,7 @@
       </div></div>
     </div>
   </div>
+
 @endsection
 
 @section('scripts')

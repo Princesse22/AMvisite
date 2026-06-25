@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuperadminController;
 use App\Http\Controllers\ResponsableController;
+use App\Http\Controllers\SecretaireController;
 
 // Page d'accueil = formulaire de connexion
 Route::get('/', function () {
@@ -66,7 +67,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     //ajouter un Responsable
     Route::post('/admin/gestion-utilisateurs',[ResponsableController::class,'ajoutResponsable'])->name('ajoutResponsable');
-    //afficher les Responsables
+    //afficher les Responsables (+ secretaires)
     Route::get('/gestion-utilisateurs.html', [ResponsableController::class, 'afficherResponsable'])->name('gestion-utilisateurs');
     //recupere le responsable a modifier un Responsable
     Route::get('/modifier-responsable/{id}', [ResponsableController::class, 'modifierResponsable'])->name('modifierResponsable');
@@ -74,8 +75,21 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/modifierResponsabletraitement', [ResponsableController::class, 'modifierResponsabletraitement'])->name('modifierResponsabletraitement');
     //supprimer un Responsable
     Route::get('suprimer-responsable/{id}', [ResponsableController::class, 'supprimerResponsable'])->name('supprimerResponsable');
+
+    
+    //afficher le formulaire d'ajout d'une secretaire
+    Route::get('/admin/ajout-secretaire', [SecretaireController::class, 'formAjoutSecretaire'])->name('formAjoutSecretaire');
+    //ajouter une secretaire
+    Route::post('/admin/gestion-secretaire', [SecretaireController::class, 'ajoutSecretaire'])->name('ajoutSecretaire');
+    //recuperer la secretaire a modifier
+    Route::get('/modifier-secretaire/{id}', [SecretaireController::class, 'modifierSecretaire'])->name('modifierSecretaire');
+    //modifier une secretaire
+    Route::post('/modifierSecretairetraitement', [SecretaireController::class, 'modifierSecretairetraitement'])->name('modifierSecretairetraitement');
+    //supprimer une secretaire
+    Route::get('/supprimer-secretaire/{id}', [SecretaireController::class, 'supprimerSecretaire'])->name('supprimerSecretaire');
 });
 
+    // route::get('responsable/gestion-secretaire',[ResponsableController::class,'afficherSecretaire'])->name('afficherSecretaire');
 Route::middleware(['auth', 'role:secretaire'])->group(function () {
     Route::get('/dashboard-secretaire.html', function () {
         return view('secretaire.dashboard-secretaire');

@@ -39,9 +39,11 @@ class ResponsableController extends Controller
         ->with('success', 'Responsable ajouté avec succès.');
     }
 
+    // affiche la page gestion-utilisateurs avec les responsables ET les secretaires
     public function afficherResponsable(){
         $users = User::where('role','responsable')->get();
-        return view('admin.gestion-utilisateurs', compact('users'));
+        $secretaires = User::where('role', 'secretaire')->get();
+        return view('admin.gestion-utilisateurs', compact('users', 'secretaires'));
     }
 
     //recuperer le responsale a modifier responsable
