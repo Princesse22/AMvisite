@@ -35,9 +35,14 @@
                   <td>{{ $user->phone }}</td>
                   <td><span class="am-badge {{ $user->statut === 'actif' ? 'am-badge-success' : 'am-badge-secondary' }}">{{ ucfirst($user->statut) }}</span></td>
                   <td class="text-end">
-                    <button class="am-action-btn view" data-demo-action="Activation/Désactivation (démo)."><i class="bi bi-toggle-on"></i></button>
-                    <button class="am-action-btn edit" data-bs-toggle="modal" data-bs-target="#modalResp"><i class="bi bi-pencil"></i></button>
-                    <button class="am-action-btn delete" data-bs-toggle="modal" data-bs-target="#modalDelete"><i class="bi bi-trash"></i></button>
+
+                <a href="{{ route('modifierResponsable',$user->id) }}" class="am-action-btn edit" >
+                    <i class="bi bi-pencil"></i>
+                </a>
+
+                <a href="#" class="am-action-btn delete">
+                    <i class="bi bi-trash"></i>
+                </a>
                   </td>
                 </tr>
                 @endforeach

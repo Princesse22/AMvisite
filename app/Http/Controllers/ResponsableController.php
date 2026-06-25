@@ -43,4 +43,37 @@ class ResponsableController extends Controller
         $users = User::where('role','responsable')->get();
         return view('admin.gestion-utilisateurs', compact('users'));
     }
+
+    //recuperer le responsale a modifier responsable
+    public function modifierResponsable($id){
+        $user = User::where('role', 'responsable')->findOrFail($id);
+        return view('admin.modifier-responsable', compact('user'));
+    }
+
+    //modifier responsable
+    public function modifierResponsabletraitement(Request $request){
+        $request->validate([
+            'nom'=>'required|string|max:255',
+            'mail'=>'required|email|unique:users,mail,' . $request->id,
+            'phone'=>'required|string',
+            'num_cni'=>'required|string',
+            'adresse'=>'required|string',
+            'service'=>'required|string',
+            'statut'=>'required|string'
+        ]);
+        $user = User::where('role', 'responsable')->findOrFail($request->id);
+
+        $user->nom = $request->nom;
+        $user->mail = $request->mail;
+        $user->phone = $request->phone;
+        $user->num_cni = $request->num_cni;
+        $user->adresse = $request->adresse;
+        $user->service = $request->service;
+        $user->statut = $request->statut;
+        $user->save();
+
+        return redirect()->route('gestion-utilisateurs')
+        ->with('success', 'Responsable modifié avec succès.');
+    }
+
 }

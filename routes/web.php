@@ -68,7 +68,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/admin/gestion-utilisateurs',[ResponsableController::class,'ajoutResponsable'])->name('ajoutResponsable');
     //afficher les Responsables
     Route::get('/gestion-utilisateurs.html', [ResponsableController::class, 'afficherResponsable'])->name('gestion-utilisateurs');
-
+    //recupere le responsable a modifier un Responsable
+    Route::get('/modifier-responsable/{id}', [ResponsableController::class, 'modifierResponsable'])->name('modifierResponsable');
+    //modifier un Responsable
+    Route::post('/modifierResponsabletraitement', [ResponsableController::class, 'modifierResponsabletraitement'])->name('modifierResponsabletraitement');
 });
 
 Route::middleware(['auth', 'role:secretaire'])->group(function () {
