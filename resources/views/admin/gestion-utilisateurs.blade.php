@@ -18,9 +18,29 @@
           </div>
           <div class="table-responsive">
             <table class="table am-table align-middle">
-              <thead><tr><th>Nom</th><th>Service</th><th>Email</th><th>Téléphone</th><th>Statut</th><th class="text-end">Actions</th></tr></thead>
+              <thead>
+                <tr><th>Nom</th>
+                <th>Service</th>
+                <th>Email</th>
+                <th>Téléphone</th>
+                <th>Statut</th>
+                <th class="text-end">Actions</th></tr>
+              </thead>
               <tbody>
-                <tr><td><div class="am-cell-user"><div class="am-cell-avatar">YD</div><div class="am-cell-name">Yves Diatta</div></div></td><td>Finance</td><td>yves.diatta@accentmedia.com</td><td>+221 70 654 12 09</td><td><span class="am-badge am-badge-success">Actif</span></td><td class="text-end"><button class="am-action-btn view" data-demo-action="Activation/Désactivation (démo)."><i class="bi bi-toggle-on"></i></button> <button class="am-action-btn edit" data-bs-toggle="modal" data-bs-target="#modalResp"><i class="bi bi-pencil"></i></button> <button class="am-action-btn delete" data-bs-toggle="modal" data-bs-target="#modalDelete"><i class="bi bi-trash"></i></button></td></tr>
+                @foreach ($users as $user)
+                <tr>
+                  <td><div class="am-cell-user"><div class="am-cell-avatar">{{ strtoupper(substr($user->nom, 0, 2)) }}</div><div class="am-cell-name">{{ $user->nom }}</div></div></td>
+                  <td>{{ $user->service }}</td>
+                  <td>{{ $user->mail }}</td>
+                  <td>{{ $user->phone }}</td>
+                  <td><span class="am-badge {{ $user->statut === 'actif' ? 'am-badge-success' : 'am-badge-secondary' }}">{{ ucfirst($user->statut) }}</span></td>
+                  <td class="text-end">
+                    <button class="am-action-btn view" data-demo-action="Activation/Désactivation (démo)."><i class="bi bi-toggle-on"></i></button>
+                    <button class="am-action-btn edit" data-bs-toggle="modal" data-bs-target="#modalResp"><i class="bi bi-pencil"></i></button>
+                    <button class="am-action-btn delete" data-bs-toggle="modal" data-bs-target="#modalDelete"><i class="bi bi-trash"></i></button>
+                  </td>
+                </tr>
+                @endforeach
               </tbody>
             </table>
           </div>
@@ -32,35 +52,59 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header"><h5 class="modal-title fw-bold">Responsable</h5><button class="btn-close" data-bs-dismiss="modal"></button></div>
-        <form novalidate method="post" action="{{route('ajoutResponsable')  }}">
+        <form method="post" action="{{route('ajoutResponsable')}}">
             @csrf
           <div class="modal-body">
             <div class="row g-3">
               <div class="col-md-6">
                 <label class="form-label">Nom complet</label>
-                <input type="text" class="form-control" required name="nom"></div>
+                <input type="text" class="form-control @error('nom') is-invalid @enderror" required name="nom" value="{{ old('nom') }}">
+                @error('nom')<div class="invalid-feedback">{{ $message }}</div>@enderror
+              </div>
               <div class="col-md-6">
                 <label class="form-label">Service</label>
-                <select class="form-select" name="service">
+                <select class="form-select @error('service') is-invalid @enderror" name="service">
                 <option>Commercial</option>
                 <option>Production</option>
                 <option>Ressources Humaines</option>
                 <option>Marketing</option>
                 <option>Finance</option>
                 </select>
+                @error('service')<div class="invalid-feedback">{{ $message }}</div>@enderror
                 </div>
-              <div class="col-md-6"><label class="form-label">Email</label><input type="email" class="form-control" required name="mail"></div>
-              <div class="col-md-6"><label class="form-label">Téléphone</label><input type="tel" class="form-control" required name="phone"></div>
-              <div class="col-md-6"><label class="form-label">numero cni</label><input type="email" class="form-control" required name="num_cni"></div>
-              <div class="col-md-6"><label class="form-label">Adresse</label><input type="email" class="form-control" required name="adresse"></div>
-              <div class="col-md-6"><label class="form-label">Mot de passe</label><input type="password" class="form-control" required name="password"></div>
+              <div class="col-md-6">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control @error('mail') is-invalid @enderror" required name="mail" value="{{ old('mail') }}">
+                @error('mail')<div class="invalid-feedback">{{ $message }}</div>@enderror
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Téléphone</label>
+                <input type="tel" class="form-control @error('phone') is-invalid @enderror" required name="phone" value="{{ old('phone') }}">
+                @error('phone')<div class="invalid-feedback">{{ $message }}</div>@enderror
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">numero cni</label>
+                <input type="text" class="form-control @error('num_cni') is-invalid @enderror" required name="num_cni" value="{{ old('num_cni') }}">
+                @error('num_cni')<div class="invalid-feedback">{{ $message }}</div>@enderror
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Adresse</label>
+                <input type="text" class="form-control @error('adresse') is-invalid @enderror" required name="adresse" value="{{ old('adresse') }}">
+                @error('adresse')<div class="invalid-feedback">{{ $message }}</div>@enderror
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Mot de passe</label>
+                <input type="password" class="form-control @error('password') is-invalid @enderror" required name="password">
+                @error('password')<div class="invalid-feedback">{{ $message }}</div>@enderror
+              </div>
               <div class="col-md-6">
                 <label class="form-label">Statut</label>
-                <select class="form-select" name="statut">
+                <select class="form-select @error('statut') is-invalid @enderror" name="statut">
                 <option value="actif">Actif</option>
                 <option value="inactif">Inactif</option>
-            </select>
-            </div>
+                </select>
+                @error('statut')<div class="invalid-feedback">{{ $message }}</div>@enderror
+              </div>
             </div>
           </div>
           <div class="modal-footer"><button type="button" class="btn btn-light">Annuler</button><button type="submit" class="btn btn-orange">Enregistrer</button></div>
@@ -84,5 +128,13 @@
 @section('scripts')
   <script>
     buildLayout({ role: 'admin', active: '/admin/gestion-utilisateurs.html', title: 'Gestion des Utilisateurs', subtitle: 'Responsables de service destinataires des rendez-vous' });
+
+    @if ($errors->any())
+      document.addEventListener('DOMContentLoaded', function () {
+        var modalEl = document.getElementById('modalResp');
+        var modal = new bootstrap.Modal(modalEl);
+        modal.show();
+      });
+    @endif
   </script>
 @endsection

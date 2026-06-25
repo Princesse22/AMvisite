@@ -44,10 +44,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         return view('admin.dashboard-admin');
     })->name('admin');
 
-    Route::get('/gestion-utilisateurs.html', function () {
-        return view('admin.gestion-utilisateurs');
-    })->name('gestion-utilisateurs');
-
     Route::get('/liste-visiteurs.html', function () {
         return view('admin.liste-visiteurs');
     })->name('liste-visiteurs');
@@ -70,6 +66,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     //ajouter un Responsable
     Route::post('/admin/gestion-utilisateurs',[ResponsableController::class,'ajoutResponsable'])->name('ajoutResponsable');
+    //afficher les Responsables
+    Route::get('/gestion-utilisateurs.html', [ResponsableController::class, 'afficherResponsable'])->name('gestion-utilisateurs');
 
 });
 

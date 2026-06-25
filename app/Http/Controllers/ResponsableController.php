@@ -38,4 +38,9 @@ class ResponsableController extends Controller
         return redirect()->route('gestion-utilisateurs')
         ->with('success', 'Responsable ajouté avec succès.');
     }
+
+    public function afficherResponsable(){
+        $users = User::where('role','responsable')->get();
+        return view('admin.gestion-utilisateurs', compact('users'));
+    }
 }
