@@ -20,10 +20,6 @@
             <table class="table am-table align-middle">
               <thead><tr><th>Nom</th><th>Service</th><th>Email</th><th>Téléphone</th><th>Statut</th><th class="text-end">Actions</th></tr></thead>
               <tbody>
-                <tr><td><div class="am-cell-user"><div class="am-cell-avatar">IB</div><div class="am-cell-name">Ibrahima Bah</div></div></td><td>Commercial</td><td>ibrahima.bah@accentmedia.com</td><td>+221 77 540 11 02</td><td><span class="am-badge am-badge-success">Actif</span></td><td class="text-end"><button class="am-action-btn view" data-demo-action="Activation/Désactivation (démo)."><i class="bi bi-toggle-on"></i></button> <button class="am-action-btn edit" data-bs-toggle="modal" data-bs-target="#modalResp"><i class="bi bi-pencil"></i></button> <button class="am-action-btn delete" data-bs-toggle="modal" data-bs-target="#modalDelete"><i class="bi bi-trash"></i></button></td></tr>
-                <tr><td><div class="am-cell-user"><div class="am-cell-avatar">AS</div><div class="am-cell-name">Aïcha Sylla</div></div></td><td>Production</td><td>aicha.sylla@accentmedia.com</td><td>+221 76 220 88 31</td><td><span class="am-badge am-badge-success">Actif</span></td><td class="text-end"><button class="am-action-btn view" data-demo-action="Activation/Désactivation (démo)."><i class="bi bi-toggle-on"></i></button> <button class="am-action-btn edit" data-bs-toggle="modal" data-bs-target="#modalResp"><i class="bi bi-pencil"></i></button> <button class="am-action-btn delete" data-bs-toggle="modal" data-bs-target="#modalDelete"><i class="bi bi-trash"></i></button></td></tr>
-                <tr><td><div class="am-cell-user"><div class="am-cell-avatar">MC</div><div class="am-cell-name">Moussa Camara</div></div></td><td>Ressources Humaines</td><td>moussa.camara@accentmedia.com</td><td>+221 78 110 47 65</td><td><span class="am-badge am-badge-muted">Inactif</span></td><td class="text-end"><button class="am-action-btn view" data-demo-action="Activation/Désactivation (démo)."><i class="bi bi-toggle-off"></i></button> <button class="am-action-btn edit" data-bs-toggle="modal" data-bs-target="#modalResp"><i class="bi bi-pencil"></i></button> <button class="am-action-btn delete" data-bs-toggle="modal" data-bs-target="#modalDelete"><i class="bi bi-trash"></i></button></td></tr>
-                <tr><td><div class="am-cell-user"><div class="am-cell-avatar">FB</div><div class="am-cell-name">Fanta Bary</div></div></td><td>Marketing</td><td>fanta.bary@accentmedia.com</td><td>+221 77 901 33 20</td><td><span class="am-badge am-badge-success">Actif</span></td><td class="text-end"><button class="am-action-btn view" data-demo-action="Activation/Désactivation (démo)."><i class="bi bi-toggle-on"></i></button> <button class="am-action-btn edit" data-bs-toggle="modal" data-bs-target="#modalResp"><i class="bi bi-pencil"></i></button> <button class="am-action-btn delete" data-bs-toggle="modal" data-bs-target="#modalDelete"><i class="bi bi-trash"></i></button></td></tr>
                 <tr><td><div class="am-cell-user"><div class="am-cell-avatar">YD</div><div class="am-cell-name">Yves Diatta</div></div></td><td>Finance</td><td>yves.diatta@accentmedia.com</td><td>+221 70 654 12 09</td><td><span class="am-badge am-badge-success">Actif</span></td><td class="text-end"><button class="am-action-btn view" data-demo-action="Activation/Désactivation (démo)."><i class="bi bi-toggle-on"></i></button> <button class="am-action-btn edit" data-bs-toggle="modal" data-bs-target="#modalResp"><i class="bi bi-pencil"></i></button> <button class="am-action-btn delete" data-bs-toggle="modal" data-bs-target="#modalDelete"><i class="bi bi-trash"></i></button></td></tr>
               </tbody>
             </table>
@@ -36,18 +32,38 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header"><h5 class="modal-title fw-bold">Responsable</h5><button class="btn-close" data-bs-dismiss="modal"></button></div>
-        <form data-validate data-success="Responsable enregistré avec succès." novalidate>
+        <form novalidate method="post" action="{{route('ajoutResponsable')  }}">
+            @csrf
           <div class="modal-body">
             <div class="row g-3">
-              <div class="col-md-6"><label class="form-label">Nom complet</label><input type="text" class="form-control" required></div>
-              <div class="col-md-6"><label class="form-label">Service</label><select class="form-select"><option>Commercial</option><option>Production</option><option>Ressources Humaines</option><option>Marketing</option><option>Finance</option></select></div>
-              <div class="col-md-6"><label class="form-label">Email</label><input type="email" class="form-control" required></div>
-              <div class="col-md-6"><label class="form-label">Téléphone</label><input type="tel" class="form-control" required></div>
-              <div class="col-md-6"><label class="form-label">Mot de passe</label><input type="password" class="form-control" required></div>
-              <div class="col-md-6"><label class="form-label">Statut</label><select class="form-select"><option>Actif</option><option>Inactif</option></select></div>
+              <div class="col-md-6">
+                <label class="form-label">Nom complet</label>
+                <input type="text" class="form-control" required name="nom"></div>
+              <div class="col-md-6">
+                <label class="form-label">Service</label>
+                <select class="form-select" name="service">
+                <option>Commercial</option>
+                <option>Production</option>
+                <option>Ressources Humaines</option>
+                <option>Marketing</option>
+                <option>Finance</option>
+                </select>
+                </div>
+              <div class="col-md-6"><label class="form-label">Email</label><input type="email" class="form-control" required name="mail"></div>
+              <div class="col-md-6"><label class="form-label">Téléphone</label><input type="tel" class="form-control" required name="phone"></div>
+              <div class="col-md-6"><label class="form-label">numero cni</label><input type="email" class="form-control" required name="num_cni"></div>
+              <div class="col-md-6"><label class="form-label">Adresse</label><input type="email" class="form-control" required name="adresse"></div>
+              <div class="col-md-6"><label class="form-label">Mot de passe</label><input type="password" class="form-control" required name="password"></div>
+              <div class="col-md-6">
+                <label class="form-label">Statut</label>
+                <select class="form-select" name="statut">
+                <option value="actif">Actif</option>
+                <option value="inactif">Inactif</option>
+            </select>
+            </div>
             </div>
           </div>
-          <div class="modal-footer"><button type="button" class="btn btn-light" data-bs-dismiss="modal">Annuler</button><button type="submit" class="btn btn-orange">Enregistrer</button></div>
+          <div class="modal-footer"><button type="button" class="btn btn-light">Annuler</button><button type="submit" class="btn btn-orange">Enregistrer</button></div>
         </form>
       </div>
     </div>

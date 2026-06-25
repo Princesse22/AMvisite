@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuperadminController;
+use App\Http\Controllers\ResponsableController;
 
 // Page d'accueil = formulaire de connexion
 Route::get('/', function () {
@@ -66,6 +67,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/notifications.html', function () {
         return view('admin.notifications');
     })->name('notifications');
+
+    //ajouter un Responsable
+    Route::post('/admin/gestion-utilisateurs',[ResponsableController::class,'ajoutResponsable'])->name('ajoutResponsable');
 
 });
 
