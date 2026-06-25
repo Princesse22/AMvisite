@@ -72,6 +72,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/modifier-responsable/{id}', [ResponsableController::class, 'modifierResponsable'])->name('modifierResponsable');
     //modifier un Responsable
     Route::post('/modifierResponsabletraitement', [ResponsableController::class, 'modifierResponsabletraitement'])->name('modifierResponsabletraitement');
+    //supprimer un Responsable
+    Route::get('suprimer-responsable/{id}', [ResponsableController::class, 'supprimerResponsable'])->name('supprimerResponsable');
 });
 
 Route::middleware(['auth', 'role:secretaire'])->group(function () {

@@ -76,4 +76,12 @@ class ResponsableController extends Controller
         ->with('success', 'Responsable modifié avec succès.');
     }
 
+    public function supprimerResponsable($id){
+        $user = User::where('role', 'responsable')->findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('gestion-utilisateurs')
+        ->with('success', 'Responsable supprimé avec succès.');
+    }
+
 }

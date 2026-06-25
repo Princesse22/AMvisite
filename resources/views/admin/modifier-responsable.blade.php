@@ -1,8 +1,4 @@
-<style>
-    body{
-        scroll:hidden;
-    }
-    </style>
+
 @extends('layouts.app')
 
 @section('title', 'Modifier un Responsable | Accent Media')

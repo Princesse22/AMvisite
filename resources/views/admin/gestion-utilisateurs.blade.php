@@ -40,7 +40,7 @@
                     <i class="bi bi-pencil"></i>
                 </a>
 
-                <a href="#" class="am-action-btn delete">
+                <a href="{{ route('supprimerResponsable',$user->id) }}" class="am-action-btn delete">
                     <i class="bi bi-trash"></i>
                 </a>
                   </td>
