@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -14,15 +13,27 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     /**
+     * Comme on a renommé "email" en "mail", on doit le préciser à Laravel
+     * pour que l'authentification (login, reset password) continue de marcher.
+     */
+    public function getEmailForPasswordReset()
+    {
+        return $this->mail;
+    }
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var list<string>
      */
     protected $fillable = [
-        'name',
-        'email',
+        'nom',
+        'mail',
         'phone',
+        'num_cni',
+        'adresse',
         'password',
+        'role',
     ];
 
     /**
@@ -43,26 +54,8 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
-            'id',
-            'nom',
-            'phone',
-            'num_cni',
-            'role',
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
-    }
-
-        public function Responsales()
-    {
-        return this->belongTo(Responsables::class);
-    }
-        public function Admins()
-    {
-        return this->belongTo(Admins::class);
-    }
-        public function Secretaires()
-    {
-        return this->belongTo(Secretaires::class);
     }
 }
