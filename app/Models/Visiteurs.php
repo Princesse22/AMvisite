@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Visiteurs extends Model
 {
+    /**
+     * La table en base s'appelle "Visiteur" (et non "visiteurs"
+     * comme Laravel le déduirait par convention), donc on le précise.
+     */
+    protected $table = 'Visiteur';
+
     protected $fillable = [
         'nom',
         'phone',
@@ -13,14 +19,16 @@ class Visiteurs extends Model
         'objet',
         'type_visiteur',
         'date',
-        'heure'
+        'heure',
     ];
-    public function RendezVous()
+
+    public function rendezVous()
     {
-        return this->hasMany(RendezVous::class);
+        return $this->hasMany(RendezVous::class);
     }
-        public function Comptes()
+
+    public function comptes()
     {
-        return this->belongTo(Comptes::class);
+        return $this->belongsTo(Comptes::class);
     }
 }

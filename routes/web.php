@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuperadminController;
 use App\Http\Controllers\ResponsableController;
 use App\Http\Controllers\SecretaireController;
+use App\Http\Controllers\VisiteurController;
 
 // Page d'accueil = formulaire de connexion
 Route::get('/', function () {
@@ -76,7 +77,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     //supprimer un Responsable
     Route::get('suprimer-responsable/{id}', [ResponsableController::class, 'supprimerResponsable'])->name('supprimerResponsable');
 
-    
+
     //afficher le formulaire d'ajout d'une secretaire
     Route::get('/admin/ajout-secretaire', [SecretaireController::class, 'formAjoutSecretaire'])->name('formAjoutSecretaire');
     //ajouter une secretaire
@@ -95,13 +96,21 @@ Route::middleware(['auth', 'role:secretaire'])->group(function () {
         return view('secretaire.dashboard-secretaire');
     })->name('secretaires');
 
-    Route::get('/enregistrer-visiteur.html', function () {
-        return view('secretaire.enregistrer-visiteur');
-    })->name('enregistrer-visiteur');
-
-    Route::get('/liste-visiteurs.html', function () {
+    //afficher le formulaire d'enregistrement d'un visiteur
+    Route::get('/enregistrer-visiteur.html', [VisiteurController::class, 'formAjoutVisiteur'])->name('enregistrer-visiteur');
+    //enregistrer un visiteur
+    Route::post('/enregistrer-visiteur', [VisiteurController::class, 'ajouterVisiteur'])->name('ajouterVisiteur');
+    //afficher la liste des visiteurs
+    Route::get('/liste-visiteur',function(){
         return view('secretaire.liste-visiteurs');
-    })->name('liste-visiteurs');
+    })->name('liste-visiteur');
+    Route::get('/liste-visiteurs.html', [VisiteurController::class, 'afficherVisiteur'])->name('liste-visiteurs');
+    //recuperer le visiteur a modifier
+    Route::get('/modifier-visiteur/{id}', [VisiteurController::class, 'modifierVisiteur'])->name('modifierVisiteur');
+    //modifier un visiteur
+    Route::post('/modifierVisiteurTraitement', [VisiteurController::class, 'modifierVisiteurTraitement'])->name('modifierVisiteurTraitement');
+    //supprimer un visiteur
+    Route::get('/supprimer-visiteur/{id}', [VisiteurController::class, 'supprimerVisiteur'])->name('supprimerVisiteur');
 
     Route::get('/rendezvous-detail.html', function () {
         return view('secretaire.rendezvous-detail');

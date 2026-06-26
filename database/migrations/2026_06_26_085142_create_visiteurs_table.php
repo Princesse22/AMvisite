@@ -11,15 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('Visiteur',function(Blueprint $table){
+        Schema::create('Visiteur', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
             $table->string('phone');
+            $table->string('num_cni');
             $table->string('objet');
-            $table->enum('type_visiteur',['Client','Fournisseur','Partenaire','Autre']);
+            $table->enum('type_visiteur', ['Client', 'Fournisseur', 'Partenaire', 'Autre']);
             $table->date('date');
-            $table->time('time');
-            });
+            $table->time('heure');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('Visiteur');
     }
 };
