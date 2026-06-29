@@ -39,7 +39,7 @@ class ServiceController extends Controller
     }
 
     // Modifier un service
-    public function modifierserviceservicetraitement(Request $request)
+    public function modifierServicetraitement(Request $request)
     {
         $request->validate([
             'id'   => 'required|exists:service,id',

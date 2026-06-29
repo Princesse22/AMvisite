@@ -91,15 +91,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/supprimer-secretaire/{id}', [SecretaireController::class, 'supprimerSecretaire'])->name('supprimerSecretaire');
 
     //service
-     //afficher le formulaire d'ajout d'une secretaire
+     //afficher le formulaire d'ajout de la secretaire
     Route::get('/admin/ajout-service', [ServiceController::class, 'formAjoutservice'])->name('formAjoutservice');
-    //ajouter une secretaire
+    //ajouter une service
     Route::post('/admin/gestion-service', [ServiceController::class, 'ajoutService'])->name('ajoutService');
-    //recuperer la secretaire a modifier
+    //recuperer la servicee a modifier
     Route::get('/modifier-service/{id}', [ServiceController::class, 'modifierService'])->name('modifierService');
-    //modifier une secretaire
-    Route::post('/modifierservicetraitement', [ServiceController::class, 'modifierserviceservicetraitement'])->name('modifierservicetraitement');
-    //supprimer une secretaire
+    //modifier une servicee
+    Route::post('/modifierservicetraitement', [ServiceController::class, 'modifierServicetraitement'])->name('modifierServicetraitement');
+    //supprimer une servicee
     Route::get('/supprimer-service/{id}', [ServiceController::class, 'supprimerservice'])->name('supprimerservice');
 
 
