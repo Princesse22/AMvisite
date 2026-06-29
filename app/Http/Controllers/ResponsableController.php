@@ -40,11 +40,12 @@ class ResponsableController extends Controller
     }
 
     // affiche la page gestion-utilisateurs avec les responsables ET les secretaires
-    public function afficherResponsable(){
-        $users = User::where('role','responsable')->get();
-        $secretaires = User::where('role', 'secretaire')->get();
-        return view('admin.gestion-utilisateurs', compact('users', 'secretaires'));
-    }
+public function afficherResponsable(){
+    $users = User::where('role','responsable')->get();
+    $secretaires = User::where('role', 'secretaire')->get();
+    $services = \App\Models\Service::all();
+    return view('admin.gestion-utilisateurs', compact('users', 'secretaires', 'services'));
+}
 
     //recuperer le responsale a modifier responsable
     public function modifierResponsable($id){

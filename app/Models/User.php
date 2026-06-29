@@ -60,4 +60,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function service()
+    {
+        return $this->belongsTo(service::class);
+    }
 }

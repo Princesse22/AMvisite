@@ -6,6 +6,7 @@ use App\Http\Controllers\SuperadminController;
 use App\Http\Controllers\ResponsableController;
 use App\Http\Controllers\SecretaireController;
 use App\Http\Controllers\VisiteurController;
+use App\Http\Controllers\ServiceController;
 
 // Page d'accueil = formulaire de connexion
 Route::get('/', function () {
@@ -88,6 +89,20 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/modifierSecretairetraitement', [SecretaireController::class, 'modifierSecretairetraitement'])->name('modifierSecretairetraitement');
     //supprimer une secretaire
     Route::get('/supprimer-secretaire/{id}', [SecretaireController::class, 'supprimerSecretaire'])->name('supprimerSecretaire');
+
+    //service
+     //afficher le formulaire d'ajout d'une secretaire
+    Route::get('/admin/ajout-service', [ServiceController::class, 'formAjoutservice'])->name('formAjoutservice');
+    //ajouter une secretaire
+    Route::post('/admin/gestion-service', [ServiceController::class, 'ajoutService'])->name('ajoutService');
+    //recuperer la secretaire a modifier
+    Route::get('/modifier-service/{id}', [ServiceController::class, 'modifierService'])->name('modifierService');
+    //modifier une secretaire
+    Route::post('/modifierservicetraitement', [ServiceController::class, 'modifierserviceservicetraitement'])->name('modifierservicetraitement');
+    //supprimer une secretaire
+    Route::get('/supprimer-service/{id}', [ServiceController::class, 'supprimerservice'])->name('supprimerservice');
+
+
 });
 
     // route::get('responsable/gestion-secretaire',[ResponsableController::class,'afficherSecretaire'])->name('afficherSecretaire');

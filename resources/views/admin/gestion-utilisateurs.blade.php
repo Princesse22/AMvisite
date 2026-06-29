@@ -103,6 +103,51 @@
             </table>
           </div>
         </div>
+
+<br><br><br><br>
+        {{-- =================================ajout services --}}
+
+        <div class="am-table-card">
+          <div class="am-table-header">
+            <h5>Liste des services</h5>
+            <a href="{{ route('formAjoutservice') }}" class="btn btn-orange btn-sm">
+              <i class="bi bi-plus-lg me-1"></i>Ajouter un service
+            </a>
+          </div>
+          <div class="table-responsive">
+            <table class="table am-table align-middle">
+              <thead>
+                <tr><th>Nom service</th>
+                <th>Email</th>
+                <th class="text-end">Actions</th></tr>
+              </thead>
+              <tbody>
+
+                @forelse ($services as $service)
+                <tr>
+                  <td>{{ $service->nom }}</td>
+                  <td>{{ $service->mail }}</td>
+                 <td class="text-end">
+
+                <a href="{{ route('modifierService', $service->id) }}" class="am-action-btn edit">
+                    <i class="bi bi-pencil"></i>
+                </a>
+
+                <a href="{{ route('supprimerservice', $service->id) }}" class="am-action-btn delete">
+                    <i class="bi bi-trash"></i>
+                </a>
+                  </td>
+                </tr>
+                @empty
+                <tr>
+                  <td colspan="7" class="text-center text-secondary py-4">Aucun service enregistré.</td>
+                </tr>
+                @endforelse
+
+              </tbody>
+            </table>
+          </div>
+        </div>
 @endsection
 
 @section('modals')
