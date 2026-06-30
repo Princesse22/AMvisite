@@ -7,27 +7,35 @@ use Illuminate\Database\Eloquent\Model;
 class RendezVous extends Model
 {   protected $fillable =[
     'id',
-    'nom_visiteur',
-    'service',
+    'visiteur_id',
+    'cree_par',
+    'destinataire',
     'objet',
     'date',
     'heure',
+    'nouvelle_date',
+    'nouvelle_heure',
+    'created_at',
     'status',
 ];
 
     public function Visiteurs()
     {
-        this->hasZeroOrMany(Visiteurs::class);
+        return $this->hasZeroOrMany(Visiteurs::class);
     }
 
     public function Secretaires()
     {
-        return this->belongTo(Secretaires::class);
+        return $this->belongTo(Secretaires::class);
     }
 
     public function Responsables()
     {
-        return this->hasMany(Responsables::class);
+        return $this->hasMany(Responsables::class);
+    }
+    public function service()
+    {
+        return this->belongto(service::class);
     }
 
 }

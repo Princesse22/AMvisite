@@ -13,17 +13,16 @@ return new class extends Migration
     {
         Schema::create('rendez_vous', function (Blueprint $table) {
             $table->id();
-            $table->string('nom_visiteur');
-
-            // $table->foreignId('visiteur_id')
-            //       ->constrained('visiteurs')
-            //       ->onDelete('cascade');
-
-            $table->string('service');
+            $table->foreignId('visiteur_id')
+                  ->constrained('visiteurs')
+                  ->onDelete('cascade');
+            $table->string('cree_par');
+            $table->string('destinataire');
             $table->string('objet');
             $table->date('date');
             $table->time('heure');
-
+            $table->string('nouvelle_date')->nullable();
+            $table->string('nouvelle_heure')->nullable();
             $table->enum('status', [
                 'en attente',
                 'accepter',

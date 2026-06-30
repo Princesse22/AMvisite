@@ -12,4 +12,14 @@ class Service extends Model
         'nom',
         'mail',
     ];
+
+    public function rendezVous()
+    {
+        return $this->hasMany(RendezVous::class);
+    }
+    public function User()
+    {
+        return $this->hasMany(User::class);
+    }
 }
+
