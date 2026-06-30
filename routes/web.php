@@ -7,6 +7,7 @@ use App\Http\Controllers\ResponsableController;
 use App\Http\Controllers\SecretaireController;
 use App\Http\Controllers\VisiteurController;
 use App\Http\Controllers\ServiceController;
+use App\Models\Service;
 
 // Page d'accueil = formulaire de connexion
 Route::get('/', function () {
@@ -131,9 +132,10 @@ Route::middleware(['auth', 'role:secretaire'])->group(function () {
         return view('secretaire.rendezvous-detail');
     })->name('rendezvous-detail');
 
-    Route::get('/planifier-rendezvous.html', function () {
-        return view('secretaire.planifier-rendezvous');
-    })->name('planifier-rendezvous');
+Route::get('/planifier-rendezvous.html', function () {
+    $services = Service::all();
+    return view('secretaire.planifier-rendezvous', compact('services'));
+})->name('planifier-rendezvous');
 
     Route::get('/historique-rendezvous.html', function () {
         return view('secretaire.historique-rendezvous');

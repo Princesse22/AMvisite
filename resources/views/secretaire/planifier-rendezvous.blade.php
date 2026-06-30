@@ -18,25 +18,13 @@
                 <input type="text" class="form-control" placeholder="Ex : Partenariat commercial" required>
                 <div class="invalid-feedback">Veuillez saisir l'objet.</div>
               </div>
-              <div class="col-md-6">
-                <label class="form-label">Service concerné</label>
-                <select class="form-select">
-                  <option>Direction Générale</option>
-                  <option>Commercial</option>
-                  <option>Ressources Humaines</option>
-                  <option>Comptabilité</option>
-                  <option>Informatique</option>
+                <select class="form-select" name="service_id">
+                    @foreach ($services as $service)
+                        <option value="{{ $service->id }}">
+                            {{ $service->nom }}
+                        </option>
+                    @endforeach
                 </select>
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">Responsable destinataire</label>
-                <select class="form-select">
-                  <option>Ibrahima Bah - Commercial</option>
-                  <option>Awa Sarr - RH</option>
-                  <option>Moussa Fall - Comptabilité</option>
-                  <option>Nadia Cissé - Informatique</option>
-                </select>
-              </div>
               <div class="col-md-4">
                 <label class="form-label">Date</label>
                 <input type="date" class="form-control" required>
