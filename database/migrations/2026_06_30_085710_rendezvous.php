@@ -13,11 +13,9 @@ return new class extends Migration
     {
         Schema::create('rendez_vous', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('visiteur_id')
-                  ->constrained('visiteurs')
-                  ->onDelete('cascade');
+            $table->foreignId('nom');
             $table->string('cree_par');
-            $table->string('destinataire');
+            $table->string('service_id');
             $table->string('objet');
             $table->date('date');
             $table->time('heure');

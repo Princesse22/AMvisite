@@ -7,6 +7,7 @@ use App\Http\Controllers\ResponsableController;
 use App\Http\Controllers\SecretaireController;
 use App\Http\Controllers\VisiteurController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\RendezVousController;
 use App\Models\Service;
 
 // Page d'accueil = formulaire de connexion
@@ -140,6 +141,10 @@ Route::get('/planifier-rendezvous.html', function () {
     Route::get('/historique-rendezvous.html', function () {
         return view('secretaire.historique-rendezvous');
     })->name('historique-rendezvous');
+
+     //planifier rendez-vous
+    Route::post('/secretaire/planifier-rendezvous', [rendezVousController::class,'ajouterRendezVous'])->name('ajouterRendez-vous');
+
 
     Route::get('/parametres.html', function () {
         return view('secretaire.parametres');

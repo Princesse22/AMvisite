@@ -166,12 +166,12 @@
               </div>
               <div class="col-md-6">
                 <label class="form-label">Service</label>
-                <select class="form-select @error('service') is-invalid @enderror" name="service">
-                <option>Commercial</option>
-                <option>Production</option>
-                <option>Ressources Humaines</option>
-                <option>Marketing</option>
-                <option>Finance</option>
+                <select class="form-select" name="service">
+                    @foreach ($services as $service)
+                        <option value="{{ $service->id }}">
+                            {{ $service->nom }}
+                        </option>
+                    @endforeach
                 </select>
                 @error('service')<div class="invalid-feedback">{{ $message }}</div>@enderror
                 </div>

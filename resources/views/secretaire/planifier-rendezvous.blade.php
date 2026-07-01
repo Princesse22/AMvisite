@@ -7,15 +7,16 @@
         <div class="am-section-card">
           <div class="am-section-head"><i class="bi bi-calendar-plus-fill text-orange me-2"></i>Nouveau rendez-vous</div>
           <div class="am-card-body">
-            <form data-validate data-reset-after data-success="Rendez-vous envoyé au responsable." class="row g-3">
+            <form class="row g-3" action="{{ route('ajouterRendez-vous') }}" method="POST">
+                  @csrf
               <div class="col-md-6">
                 <label class="form-label">Nom du visiteur</label>
-                <input type="text" class="form-control" placeholder="Ex : Mariama Koné" required>
+                <input type="text" class="form-control" placeholder="Ex : Mariama Koné" required name="nom">
                 <div class="invalid-feedback">Veuillez saisir le visiteur.</div>
               </div>
               <div class="col-md-6">
                 <label class="form-label">Objet du rendez-vous</label>
-                <input type="text" class="form-control" placeholder="Ex : Partenariat commercial" required>
+                <input type="text" class="form-control" placeholder="Ex : Partenariat commercial" required name="objet">
                 <div class="invalid-feedback">Veuillez saisir l'objet.</div>
               </div>
                 <select class="form-select" name="service_id">
@@ -27,21 +28,13 @@
                 </select>
               <div class="col-md-4">
                 <label class="form-label">Date</label>
-                <input type="date" class="form-control" required>
+                <input type="date" class="form-control" required name="date">
                 <div class="invalid-feedback">Veuillez choisir une date.</div>
               </div>
               <div class="col-md-4">
                 <label class="form-label">Heure</label>
-                <input type="time" class="form-control" required>
+                <input type="time" class="form-control" required name="heure">
                 <div class="invalid-feedback">Veuillez choisir une heure.</div>
-              </div>
-              <div class="col-md-4">
-                <label class="form-label">Priorité</label>
-                <select class="form-select">
-                  <option>Normale</option>
-                  <option>Haute</option>
-                  <option>Urgente</option>
-                </select>
               </div>
               <div class="col-12 pt-2">
                 <button type="submit" class="btn btn-orange"><i class="bi bi-send me-1"></i>Envoyer le rendez-vous</button>

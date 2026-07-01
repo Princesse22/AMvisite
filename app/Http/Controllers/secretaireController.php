@@ -29,7 +29,7 @@ class SecretaireController extends Controller
             'statut'   => 'required|string'
         ]);
 
-        // creer l'utilisateur (secretaire enregistrée dans la table users)
+        // creer une secretaire
         User::create([
             'nom'      => $request->nom,
             'mail'     => $request->mail,
